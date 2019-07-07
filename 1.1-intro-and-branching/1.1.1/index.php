@@ -1,35 +1,21 @@
 <?php
-$variable = 1;
-if (is_int($variable)) {
-    echo "$variable is integer";
-} else {
-    echo "$variable is not integer";
-}; 
-$variable = 'one';
-if (is_string($variable)) {
-    echo "$variable is string";
-} else {
-    echo "$variable is not string";
-};
-$variable = true;
-if (is_bool($variable)) {
-    echo "$variable is bool";
-} else {
-    echo "$variable is not bool";
-};
 $variable = 3.14;
 if (is_float($variable)) {
-    echo "$variable is float";
-} else {
-    echo "$variable is not float";
-};
-$variable = null;
-if (is_null($variable)) {
-    echo "$variable is null";
-} else {
-    echo "$variable is not null";
-};
-$type = $variable;
+    $type = "$variable is float"; 
+} elseif (is_int($variable)) {
+    $type = "$variable is int";
+} elseif (is_string($variable)) {
+    $type = "$variable is string";
+} elseif (is_null($variable)) {
+    $type = "$variable is null";
+} elseif (is_bool($variable)) {
+    $type = "$variable is bool";
+} elseif (is_array($variable)) {
+    $type = "$variable is other";
+}
+else {
+    $type = "$variable is smth else :)";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +24,6 @@ $type = $variable;
     <title>bPHP - 1.1.1</title>
 </head>
 <body>
-    <p><?=$type?></p>
+    <p><<?=$type?></p>
 </body>
 </html>
