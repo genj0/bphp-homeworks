@@ -7,7 +7,7 @@ $_POST['lastName'] = $lN;
 $_POST['middleName'] = $mN;
 $_POST['code'] = $code;
 $codeWord = 'nd82jaake';
-
+// git commit -m 'task 1.1.0 done'
 if (preg_match("/(@/*?,;:)/", $string)) {
 echo "нельзя использовать специальные символы";
 } elseif (preg_match(".{8,}$", $pass)) {
