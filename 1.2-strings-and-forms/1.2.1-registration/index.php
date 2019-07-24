@@ -1,13 +1,17 @@
 <?php
-$_POST['login'] = $login;
-$_POST['password'] = $pass;
-$_POST['email'] = $email;
-$_POST['firstName'] = $fN;
-$_POST['lastName'] = $lN;
-$_POST['middleName'] = $mN;
-$_POST['code'] = $code;
+$login = $_POST['login'];
+$pass = $_POST['password'];
+$email = $_POST['email'];
+$fN = $_POST['firstName'];
+$lN = $_POST['lastName'];
+$mN = $_POST['middleName'];
+$code = $_POST['code'];
 $codeWord = 'nd82jaake';
-// git commit -m 'task 1.1.0 done'
+/* cd c:/dev/netology/bphp/homeworks
+git add .
+git commit -m 'task 1.1.0 done'
+git push  */
+// git commit -m 'task 1.2.1 done'
 if (preg_match("/(@/*?,;:)/", $string)) {
 echo "нельзя использовать специальные символы";
 } elseif (preg_match(".{8,}$", $pass)) {
