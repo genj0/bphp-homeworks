@@ -12,17 +12,17 @@ git add .
 git commit -m 'task 1.1.0 done'
 git push  */
 // git commit -m 'task 1.2.1 done'
-if (preg_match("/(@/*?,;:)/", $string)) {
+if (preg_match('/[(@\/*?,;:)]/', $string)) {
 echo "нельзя использовать специальные символы";
-} elseif (preg_match(".{8,}$", $pass)) {
+} elseif (preg_match('/[.{8,}$]/', $pass)) {
     echo "пароль должен содержать не менее 8 символов";
-} elseif(preg_match("^[a-zA-Z0-9_]{1,}$",$fN)) {
+} elseif(preg_match('/^[a-zA-Z0-9_]{1,}$/',$fN)) {
     echo "обязательно к заполнению";
-} elseif (preg_match("^[a-zA-Z0-9_]{1,}$",$lN)) {
+} elseif (preg_match('/^[a-zA-Z0-9_]{1,}$/',$lN)) {
     echo "обязательно к заполнению";
-} elseif(preg_match("^[a-zA-Z0-9_]{1,}$", $mN)) {
+} elseif(preg_match('/^[a-zA-Z0-9_]{1,}$/', $mN)) {
     echo "обязательно к заполнению";
-} elseif(preg_match("[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+", $email)){
+} elseif(preg_match('/[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+/', $email)){
     echo "введите электронынй адрес правильно";
 } elseif ($code != $codeWord ) {
     echo "кодовое слово введено не правильно";
