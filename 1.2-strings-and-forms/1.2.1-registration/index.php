@@ -9,24 +9,22 @@ $code = $_POST['code'];
 $codeWord = 'nd82jaake';
 /* cd c:/dev/netology/bphp/homeworks
 git add .
-git commit -m 'task 1.1.0 done'
+git commit -m 'task 1.2.1 done'
 git push  */
-// git commit -m 'task 1.2.1 done'
 if (preg_match('/[(@\/*?,;:)]/', $string)) {
 echo "нельзя использовать специальные символы";
-} elseif (preg_match('/[.{8,}$]/', $pass)) {
+} elseif (iconv_strlen($pass) < 8) {
     echo "пароль должен содержать не менее 8 символов";
-} elseif(preg_match('/^[a-zA-Z0-9_]{1,}$/',$fN)) {
+} elseif(iconv_strlen ($fN) < 1) {
     echo "обязательно к заполнению";
-} elseif (preg_match('/^[a-zA-Z0-9_]{1,}$/',$lN)) {
+} elseif (iconv_strlen($lN) < 1) {
     echo "обязательно к заполнению";
-} elseif(preg_match('/^[a-zA-Z0-9_]{1,}$/', $mN)) {
+} elseif(iconv_strlen($mN) < 1) {
     echo "обязательно к заполнению";
-} elseif(preg_match('/[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+/', $email)){
+} elseif(preg_match('/^[a-zA-Z0-9_\-.]+@[a-z]/', $email)){
     echo "введите электронынй адрес правильно";
 } elseif ($code != $codeWord ) {
     echo "кодовое слово введено не правильно";
 } else 
 echo "регистрация успешно пройдена";
-
 ?>
