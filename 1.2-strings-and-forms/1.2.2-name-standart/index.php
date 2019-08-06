@@ -5,5 +5,5 @@ $mName = mb_substr(mb_strtoupper($_POST['middleName'],'utf-8'),0,1,'utf-8').mb_s
 $fullName = mb_ucfirst($fName . "" . $mName . " " . $lName);
 $fio =substr($fName,0, 1) .".". substr($mName, 0, 1).".". substr($lName, 0, 1);
 $surnameAndInitials = $fName ."". substr($mName, 0, 1).".". substr($lName, 0, 1);
-
+echo "one";
 ?>
