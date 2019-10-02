@@ -15,6 +15,5 @@ foreach ($lines as $line) {
 
 json_encode($json_array);
 
-file_put_contents('data.csv', $json_array);
-
+file_put_contents('data.json', $json_array);
 ?>
