@@ -15,7 +15,7 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <form action="index.php" method="POST" enctype="multipart/form-data">
+        <form action="upload.php" method="POST" enctype="multipart/form-data">
             <input type="file"  name="image">
             <button type="submit">Загрузить</button>
         </form>
@@ -25,7 +25,7 @@
     define('PROTOCOL', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://');
     define('DIRECTORY', preg_replace('/\/[a-z0-9-_\.]+\.php$/i', '/', $_SERVER['REQUEST_URI']));
     define('UPLOAD_DOMAIN', PROTOCOL . $_SERVER['SERVER_NAME'] . DIRECTORY . 'uploads');
-    define('UPLOAD_PATH', __DIR__ . '2.1-files/2.1.2/uploads');
+    define('UPLOAD_PATH', __DIR__ . '/uploads');
 
     $images = scandir(UPLOAD_PATH);
     foreach ($images as $image) {
