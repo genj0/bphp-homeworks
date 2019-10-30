@@ -1,36 +1,28 @@
 <?php
 function generate($rows, $placesPerRow, $avaliableCount) {
-    if ($rows * $placesPerRow  > $avaliableCount) {
-        $result = FALSE;
-    } else {
-        $result = array(array());
-        for ($i = 0; $i <= $rows-1; $i++) {
-            for ($y = 0; $y <= $placesPerRow-1; $y++) {
-                $result[$i][$y] = FALSE;
-            
-            }
+    if ($rows * $placesPerRow > $avaliableCount) {
+        return false;
+    }
+    $map = [];
+    for ($i = 0; $i < $rows; $i++) {
+        for ($j = 0; $j < $placesPerRow; $j++) {
+            $map[$i][$j] = false;
         }
     }
-return $result;
+    return $map;
 }
-function reserve($map, $row, $place) {
-  
-    if ($map[$row-1][$place-1] == FALSE) {
-        $map[$row-1][$place-1] = TRUE;
-        $result = TRUE;
-    } else {
-        $result = FALSE;
+function reserve(&$map, $row, $place) {
+    if ($map[$row-1][$place-1] === false) {
+        $map[$row-1][$place-1] = true;
+        return true;
     }
-    
-return $result;
-}    
+}
 $chairs = 50;
 $map = generate(5, 8, $chairs);
 $requireRow = 3;
 $requirePlace = 5;
 $reverve = reserve($map, $requireRow, $requirePlace);
 logReserve($requireRow, $requirePlace, $reverve);
-$map[$requireRow-1][$requirePlace-1]=$reverve;
 $reverve = reserve($map, $requireRow, $requirePlace);
 logReserve($requireRow, $requirePlace, $reverve);
 function logReserve($row, $place, $result){
@@ -40,4 +32,3 @@ function logReserve($row, $place, $result){
         echo "Что-то пошло не так=( Бронь не удалась".PHP_EOL;
     }
 }
-?>  
