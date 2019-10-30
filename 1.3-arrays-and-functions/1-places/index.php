@@ -1,10 +1,16 @@
 <?php
 
-function generate($rows, $placesPerRow, $avaliableCount){
-    
-};
+function generate($rows, $placesPerRow, $avaliableCount) {  
+    $requiredPlace = 5;  
+    return $arr[[]] = false;
+    if ($avaliableCount < $requiredPlace){
+        return false;
+    }};
+
 function reserve($map, $row, $place){
+
 };
+
 
 $chairs = 50;
 $map = generate(5, 8, $chairs);
@@ -25,7 +31,5 @@ function logReserve($row, $place, $result){
         echo "Что-то пошло не так=( Бронь не удалась".PHP_EOL;
     }
 }
-
-
 
   ?>
