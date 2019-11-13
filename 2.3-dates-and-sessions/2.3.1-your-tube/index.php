@@ -9,7 +9,6 @@
         $views = include 'views.php';
         return (int) $views;
     }
-
     /**
      * Функция увеличивает количество просмотров на 1
      *
@@ -21,7 +20,6 @@
         $data = "<?php \r\nreturn {$views};";
         file_put_contents('views.php', $data);
     }
-
     /**
      * Функция проверяет, нужно ли увеличивать число просмотров
      *
@@ -29,10 +27,13 @@
      */
     function shouldBeIncremented(): bool
     {
-        //write your code here
+        if (isset($_COOKIE['incrementViews'])) {return false;}
+         else {
+             setcookie('incrementViews', 'false', time()+300);
+             return true;
+         }
     }
-
-    //
+    if (shouldBeIncremented()) {incrementViews(getViews());}
 ?>
 
 <!DOCTYPE html>
