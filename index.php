@@ -19,6 +19,7 @@
                     <li><a href="2.1-files/2.1.2">Задание 2.1.2</a></li>
                     <li><a href="2.2-OOP/2.2.1">Задание 2.2.1</a></li>
                     <li><a href="2.2-OOP/2.2.2">Задание 2.2.2</a></li>
+                    <li><a href="2.3-dates-and-sessions/2.3.1">Задание 2.3.1</a></li>
                 </ul>
             </li>
         </ul>
