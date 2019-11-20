@@ -21,7 +21,7 @@
                     <li><a href="2.2-OOP/2.2.2">Задание 2.2.2</a></li>
                     <li><a href="2.3-dates-and-sessions/2.3.1">Задание 2.3.1</a></li>
                     <li><a href="2.3-dates-and-sessions/2.3.2">Задание 2.3.2</a></li>
-                </ul>
+                </ul> 
             </li>
         </ul>
     </li>
