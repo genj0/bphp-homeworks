@@ -6,7 +6,6 @@
  * @uses $data array with params
  * @var array $menu array with menu objects
  */
-
 $menu = $data['menu'];
 ?>
 <div class="row">

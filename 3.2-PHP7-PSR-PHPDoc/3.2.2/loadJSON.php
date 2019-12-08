@@ -5,7 +5,6 @@
  * @param string $fileName
  * @return mixed data from json file
  */
-
 function loadJSON(string $fileName)
 {
     $fullFileName = 'data/' . $fileName . '.json';

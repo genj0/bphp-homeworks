@@ -5,8 +5,7 @@
  * @uses TASK_DOMAIN constant with site location
  * @uses $content variable with page html-code
  */
-
-$menu = $data['menu'];
+$menu = (isset($data['menu']));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,4 +25,3 @@ $menu = $data['menu'];
 </div>
 </body>
 </html>
-

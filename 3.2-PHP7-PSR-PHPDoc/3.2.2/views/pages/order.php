@@ -6,7 +6,6 @@
  * @uses $data array with params
  * @var string $order string with complete html-code
  */
-
 $order = $data['order'];
 ?>
 
