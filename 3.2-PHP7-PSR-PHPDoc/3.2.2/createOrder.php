@@ -8,8 +8,7 @@
 require_once 'const.php';
 require_once 'loadJSON.php';
 require_once 'renderView.php';
-require_once 'CountSum.php';
+require_once 'PoschitatSchet.php';
 $menu = loadJSON('menu');
 $post = $_POST;
-$countSum = new CountSum($menu, $post);
-renderView('default','order', [ 'order' => $countSum->countTotalAmount() ]);
+renderView('default','order', [ 'order' => PoschitatSchet($menu, $post)]);
