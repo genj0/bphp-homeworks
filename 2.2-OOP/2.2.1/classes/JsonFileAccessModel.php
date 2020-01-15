@@ -1,47 +1,48 @@
 <?php
-    class JsonFileAccessModel extends Config {
+    Class JsonFileAccessModel extends Config
+    {
         protected $fileName;
         protected $file;
-        public function __construct($fileName) {
-            $this->fileName = parent::DATABASE_PATH.$fileName.'.json';
+        public function __construct($name)
+        {
+            $this->fileName = self::DATABASE_PATH.$name.'.json';
         }
-        private function connect() {
-            var_dump($this->file);
-            if ($this->file == NULL) {
-                if (fopen($this->fileName,'r+') == FALSE) {
-                    echo 'error during opeining file';
-                }else {                    
-                    $this->file = fopen($this->fileName,'r+');
-                } 
-            } 
+        private function connect()
+        {
+            $this->file = fopen($this->fileName, 'r+');
         }
-        private function disconnect() {
+        private function disconnect()
+        {
             fclose($this->file);
         }
-        public function read() {
+        public function read()
+        {
             $this->connect();
-            $text = fread($this->file,3000);
-            if ($text !== FALSE) {
-                $this->disconnect();
-                return $text;
-            }else {
-                echo 'error during reading this file';
-            }  
-            
+            $content = fread($this->file, filesize($this->fileName));
+            $this->disconnect();
+            return $content;
         }
-        public function write($text) {
-            if(fopen($this->file,'w+') !== FALSE);
-            if(fwrite($this->file,$text)!== FALSE) echo 'Done';
+        public function write($content)
+        {
+            $this->file = fopen($this->fileName, 'w+');
+            if ($this->file !== false) {
+                fwrite($this->file, $content);
+            };
             $this->disconnect();
         }
-        public function readJson() {
-            return json_encode($this->read());
+        public function readJson()
+        {
+            $this->connect();
+            $contentJson = fread($this->file, filesize($this->fileName));
+            $this->disconnect();
+            return $contentJson;
         }
-        public function writeJson($jsonObject){
-            if(fopen($this->file,'w+') !== FALSE);
-            if(fwrite($this->file,json_decode($jsonObject,JSON_PRETTY_PRINT))!== FALSE) echo 'Done';
+        public function writeJson($contentJson)
+        {
+            $this->file = fopen($this->fileName, 'w+');
+            if ($this->file !== false) {
+                fwrite($this->file, json_decode($contentJson, JSON_PRETTY_PRINT));
+            };
             $this->disconnect();
         }
     }
-    
-?>

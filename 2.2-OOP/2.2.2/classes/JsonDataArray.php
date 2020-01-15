@@ -1,4 +1,3 @@
-  
 <?php
 class JsonDataArray
 {
@@ -17,9 +16,7 @@ class JsonDataArray
     const PARAM_TYPE_UNSORTED = 3;
     public function __construct($dataModelName = null)
     {
-        if (is_null($dataModelName)){
-            $dataModelName =  strtolower(static::class);
-        }
+        $dataModelName =  $dataModelName ?? strtolower(static::class);
         $this->file = new JsonFileAccessModel($dataModelName);
         $this->load();
     }
@@ -237,8 +234,7 @@ class JsonDataArray
         }
         return $this;
     }
-    public
-    function limit($limit)
+    public function limit($limit)
     {
         $this->query = array_slice($this->query, 0, $limit);
         return $this;

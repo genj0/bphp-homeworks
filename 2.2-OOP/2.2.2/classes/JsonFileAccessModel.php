@@ -1,54 +1,48 @@
-  
 <?php
-  class JsonFileAccessModel extends Config {
-    protected $fileName;
-    protected $file;
-    public function __construct($fName) {
-      $this->fileName = $_SERVER['DOCUMENT_ROOT'] . '/2.2-OOP/2.2.2' . parent::DATABASE_PATH . $fName . '.json';
-    }
-    private function connect($method) {
-        if (fopen($this->fileName, $method) == FALSE ) {
-          echo "<br> Открытие файла - ОШИБКА";
-        } else {
-          $this->file = fopen($this->fileName, $method);
-          echo "<br> Открытие файла - ОК";
+    Class JsonFileAccessModel extends Config
+    {
+        protected $fileName;
+        protected $file;
+        public function __construct($name)
+        {
+            $this->fileName = self::DATABASE_PATH.$name.'.json';
+        }
+        private function connect()
+        {
+            $this->file = fopen($this->fileName, 'r+');
+        }
+        private function disconnect()
+        {
+            fclose($this->file);
+        }
+        public function read()
+        {
+            $this->connect();
+            $content = fread($this->file, filesize($this->fileName));
+            $this->disconnect();
+            return $content;
+        }
+        public function write($content)
+        {
+            $this->file = fopen($this->fileName, 'w+');
+            if ($this->file !== false) {
+                fwrite($this->file, $content);
+            };
+            $this->disconnect();
+        }
+        public function readJson()
+        {
+            $this->connect();
+            $contentJson = fread($this->file, filesize($this->fileName));
+            $this->disconnect();
+            return $contentJson;
+        }
+        public function writeJson($contentJson)
+        {
+            $this->file = fopen($this->fileName, 'w+');
+            if ($this->file !== false) {
+                fwrite($this->file, json_decode($contentJson, JSON_PRETTY_PRINT));
+            };
+            $this->disconnect();
         }
     }
-    
-    private function disconnect() {
-      fclose($this->file);
-    } 
-    public function read() {
-      $this->connect("r+");
-      $text = fread($this->file, filesize($this->fileName));
-      if ($text !== FALSE) {
-        $this->disconnect();
-        echo "<br> Чтение файла - ОК";
-        return $text;
-      } else {
-        echo "<br> Чтение файла - ОШИБКА";
-      }
-    }
-    public function write($text) {
-      $this->connect("w+");
-      if (fwrite($this->file, $text) !== FALSE) {
-        $this->disconnect();
-        echo "<br> Запись в файла - ОК";
-      } else {
-        echo "<br> Запись в файла - ОШИБКА";
-      }
-    }
-    public function readJson() {
-      return json_decode($this->read());
-    }
-    public function writeJson($jsonObj) {
-      $this->connect("w+");
-      if (fwrite($this->file, json_encode($jsonObj, JSON_PRETTY_PRINT)) !== FALSE) {
-        $this->disconnect();
-        echo "<br> Запись в файла JSON - ОК";
-      } else {
-        echo "<br> Запись в файла JSON - ОШИБКА";
-      }
-    }
-  }
-?>
