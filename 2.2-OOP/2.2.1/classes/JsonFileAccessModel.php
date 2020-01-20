@@ -1,11 +1,11 @@
 <?php
-    Class JsonFileAccessModel extends Config
+    Class JsonFileAccessModel
     {
         protected $fileName;
         protected $file;
         public function __construct($name)
         {
-            $this->fileName = self::DATABASE_PATH.$name.'.json';
+            Config::DATABASE_PATH;
         }
         private function connect()
         {
