@@ -1,31 +1,39 @@
 <?php
+
 class JsonDataArray
 {
     private $file;
     private $dataTitle;
     private $dataArray;
     private $query;
+
     const GUID_PREFIX = 'o';
+
     const SORT_DIRECTION_FORWARD = true;
     const SORT_DIRECTION_BACKWORD = false;
+
     const GET_WITH_GUID = true;
     const GET_WITHOUT_GUID = false;
+
     const PARAM_TYPE_NULL = 0;
     const PARAM_TYPE_NUMERIC = 1;
     const PARAM_TYPE_STRING = 2;
     const PARAM_TYPE_UNSORTED = 3;
+
     public function __construct($dataModelName = null)
     {
         $dataModelName =  $dataModelName ?? strtolower(static::class);
         $this->file = new JsonFileAccessModel($dataModelName);
         $this->load();
     }
+
     public function load()
     {
         $this->dataTitle = $this->file->readJson()->dataTitle;
         $this->dataArray = (array)$this->file->readJson()->dataArray;
         $this->newQuery();
     }
+
     public function save()
     {
         $this->file->writeJSON([
@@ -33,15 +41,18 @@ class JsonDataArray
             'dataArray' => $this->dataArray,
         ]);
     }
+
     public function newQuery()
     {
         $this->query = array_keys($this->dataArray);
         return $this;
     }
+
     public function getGuids()
     {
         return $this->query;
     }
+
     public function getObjs($withGuid = self::GET_WITHOUT_GUID)
     {
         $result = [];
@@ -57,6 +68,7 @@ class JsonDataArray
         }
         return $result;
     }
+
     public function find($param, $value, $findLike = false)
     {
         foreach ($this->query as $index => $guid) {
@@ -73,6 +85,7 @@ class JsonDataArray
         array_values($this->query);
         return $this;
     }
+
     public function add($obj)
     {
         $guid = self::GUID_PREFIX . ++$this->dataTitle->last_guid;
@@ -80,12 +93,14 @@ class JsonDataArray
         $this->query = [$guid];
         return $guid;
     }
+
     public function changeParam($param, $new_value)
     {
         foreach ($this->query as $obj) {
             $obj->$param = $new_value;
         }
     }
+
     public function changeObjByGuid($guid, $obj)
     {
         if (!is_null($this->dataArray[$guid])){
@@ -97,6 +112,7 @@ class JsonDataArray
         }
         $this->dataArray[$guid] = $obj;
     }
+
     public function delete()
     {
         foreach ($this->query as $guid) {
@@ -105,6 +121,7 @@ class JsonDataArray
         $this->query = [];
         return true;
     }
+
     public function first()
     {
         foreach ($this->query as $guid) {
@@ -112,11 +129,13 @@ class JsonDataArray
         }
         return $this;
     }
+
     public function last()
     {
         $this->query = [end($this->query)];
         return $this;
     }
+
     public function byGuid($guid)
     {
         if (in_array($guid, $this->query)) {
@@ -126,6 +145,7 @@ class JsonDataArray
         }
         return $this;
     }
+
     public function byGuids($guids = [])
     {
         $result = [];
@@ -139,20 +159,25 @@ class JsonDataArray
         $this->query = $result;
         return $this;
     }
+
     public function count()
     {
         return count($this->query);
     }
+
+
     private function numericSort($arr, $param)
     {
         $count = count($arr);
         if ($count <= 1) {
             return $arr;
         }
+
         $this_guid = $arr[0];
         $this_param_val = $this->dataArray[$this_guid]->$param;
         $left_arr = [];
         $right_arr = [];
+
         for ($i = 1; $i < $count; $i++) {
             if (
                 (($this_param_val === null) ||
@@ -165,20 +190,25 @@ class JsonDataArray
                 $right_arr[] = $arr[$i];
             }
         }
+
         $left_arr = $this->numericSort($left_arr, $param);
         $right_arr = $this->numericSort($right_arr, $param);
+
         return array_merge($left_arr, [$this_guid], $right_arr);
     }
+
     private function stringSort($arr, $param)
     {
         $count = count($arr);
         if ($count <= 1) {
             return $arr;
         }
+
         $this_guid = $arr[0];
         $this_param_val = $this->dataArray[$this_guid]->$param;
         $left_arr = [];
         $right_arr = [];
+
         for ($i = 1; $i < $count; $i++) {
             if (
                 (
@@ -193,10 +223,13 @@ class JsonDataArray
                 $left_arr[] = $arr[$i];
             }
         }
+
         $left_arr = $this->stringSort($left_arr, $param);
         $right_arr = $this->stringSort($right_arr, $param);
+
         return array_merge($left_arr, [$this_guid], $right_arr);
     }
+
     private function identifyParamType($param, $iteration = 0, $max = null)
     {
         $paramExample = $this->dataArray[$this->query[$iteration]]->$param;
@@ -216,6 +249,7 @@ class JsonDataArray
         }
         return self::PARAM_TYPE_UNSORTED;
     }
+
     public function orderBy($param, $direction_forward = self::SORT_DIRECTION_FORWARD)
     {
         $param_type = $this->identifyParamType($param);
@@ -234,6 +268,7 @@ class JsonDataArray
         }
         return $this;
     }
+
     public function limit($limit)
     {
         $this->query = array_slice($this->query, 0, $limit);

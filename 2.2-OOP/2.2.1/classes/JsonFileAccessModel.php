@@ -36,7 +36,7 @@
             $this->connect();
             $contentJson = fread($this->file, filesize($this->fileName));
             $this->disconnect();
-            return $contentJson;
+            return json_encode($contentJson);
         }
         public function writeJson($contentJson)
         {
