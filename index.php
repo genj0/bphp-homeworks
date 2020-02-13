@@ -24,6 +24,7 @@
                     <li><a href="3.1-exceptions-and-headers">Задание 3.1.1</a></li>
                     <li><a href="3.2-PHP7-PSR-PHPDoc">Задание 3.2.1</a></li>
                     <li><a href="3.2-PHP7-PSR-PHPDoc">Задание 3.2.2</a></li>
+                    <li><a href="Diplom">Диплом</a></li>
                 </ul> 
             </li>
         </ul>
