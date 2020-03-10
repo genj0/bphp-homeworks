@@ -6,7 +6,7 @@ const MANAGER = 1;
 const TRANSLATOR = 2;
 
 include 'autoload.php';
-include 'config/SystemConfig.php';
+include 'сonfig/SystemConfig.php';
 
 $data = new data();
 $query = $data->readJson();
