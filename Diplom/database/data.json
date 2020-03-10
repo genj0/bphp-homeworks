@@ -12,15 +12,15 @@
     },
     "data_employeers": {
         "id_1": {
-            "login": "best-manager-ever",
-            "password": "test2222",
+            "login": "manager",
+            "password": "test",
             "name": "\u0412\u043b\u0430\u0434\u0438\u043c\u0438\u0440",
             "employee": 1,
             "tasks": []
         },
         "id_2": {
-            "login": "best-translator-ever",
-            "password": "test3333",
+            "login": "translator",
+            "password": "test2",
             "name": "\u0410\u043d\u044f",
             "employee": 2,
             "tasks": [
@@ -30,7 +30,7 @@
         },
         "id_3": {
             "login": "translator-sasha",
-            "password": "test4444",
+            "password": "test3",
             "name": "\u0421\u0430\u0448\u0430",
             "employee": 2,
             "tasks": [
@@ -39,7 +39,7 @@
         },
         "id_4": {
             "login": "translator-masha",
-            "password": "test5555",
+            "password": "test4",
             "name": "\u041c\u0430\u0448\u0430",
             "employee": 2,
             "tasks": [
@@ -51,8 +51,8 @@
         "4": {
             "id": 4,
             "status": "done",
-            "client": "MR David",
-            "translator": "best-translator-ever",
+            "client": "Dr Dre",
+            "translator": "translator",
             "date": "2019-12-20",
             "original_lang": "ru",
             "translation_languages": [
@@ -93,8 +93,8 @@
         "7": {
             "id": 7,
             "status": "check",
-            "client": "just a simple guy :-)",
-            "translator": "best-translator-ever",
+            "client": "PDiddy",
+            "translator": "translator",
             "date": "2020-01-16",
             "original_lang": "ru",
             "translation_languages": [
